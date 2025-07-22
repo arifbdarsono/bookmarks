@@ -7,3 +7,4 @@
 ### Git
 
 * [Git Docs with Foundation CSS](docs/git/git_docs_foundation.html)
+* [Git Docs with Skeleton CSS](docs/git/git-docs-skeleton)
