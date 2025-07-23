@@ -10,6 +10,6 @@
 * [Git Docs with Skeleton CSS](docs/git/git-docs-skeleton)
 * [Git Docs with Skeleton CSS v2](docs/git/git-docs-skeleton-v2)
 
-### Landing Pages
+## Landing Pages
 
 * [Bento Delights](landing-pages/bento-delights)
