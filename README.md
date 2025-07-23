@@ -1,6 +1,6 @@
 # What this ❓
 
-This repository contains my personal bookmarks collection and somewhat of my mini project
+This repository contains my personal bookmarks collection and somewhat of my mini projects
 
 ## TOC
 
