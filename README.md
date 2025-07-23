@@ -18,4 +18,5 @@ This repository contains my personal bookmarks collection and somewhat of my min
 
 ### Landing Pages
 
-* [Bento Delights](landing-pages/bento-delights)
+* [Bento Delights v1.0.0](landing-pages/bento-delights)
+* [Bento Delights v1.1.0](landing-pages/bento-delights-v1.1.0)
