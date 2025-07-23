@@ -1,5 +1,3 @@
-# About
-
 This repository contains my personal bookmarks collection and somewhat of my mini projects
 
 ## TOC
