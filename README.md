@@ -1,8 +1,8 @@
 # What this ❓
 
-This repository contains my personal bookmarks collection and portfolios
+This repository contains my personal bookmarks collection and somewhat of my mini project
 
-## Outline
+## TOC
 
 ### Web Browsers
 
