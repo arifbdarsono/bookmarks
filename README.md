@@ -4,7 +4,7 @@ This repository contains my personal bookmarks collection and somewhat of my min
 
 ## TOC
 
-### Web Browsers
+### Browser Bookmarks
 
 * [Firefox on IDCH Ubuntu 18.04](firefox-bookmarks-idch-ubuntu1804.html)
 
