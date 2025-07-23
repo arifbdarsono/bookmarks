@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git Documentation | A Comprehensive Guide</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="navbar-list" id="navbar-list">
+        <li class="navbar-item"><a class="navbar-link" href="#intro">Introduction</a></li>
+        <li class="navbar-item"><a class="navbar-link" href="#setup">Setup</a></li>
+        <li class="navbar-item"><a class="navbar-link" href="#basics">Basics</a></li>
+        <li class="navbar-item"><a class="navbar-link" href="#branching">Branching</a></li>
+        <li class="navbar-item"><a class="navbar-link" href="#remote">Remote</a></li>
+        <li class="navbar-item"><a class="navbar-link" href="#workflows">Workflows</a></li>
+        <li class="navbar-item"><a class="navbar-link" href="#best-practices">Best Practices</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="container">
+      <img src="img/git-logo.png" alt="Git Logo" class="git-logo">
+      <h1>Git Documentation</h1>
+      <h2>A comprehensive guide for beginners and experienced developers</h2>
+      <a href="/download" class="button button-primary">Download Project</a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="three columns">
+        <div class="sidebar">
+          <ul class="sidebar-list">
+            <li><a class="sidebar-link" href="#intro">Introduction</a></li>
+            <li><a class="sidebar-link" href="#setup">Setup & Configuration</a></li>
+            <li><a class="sidebar-link" href="#basics">Basic Commands</a></li>
+            <li><a class="sidebar-link" href="#branching">Branching & Merging</a></li>
+            <li><a class="sidebar-link" href="#remote">Remote Repositories</a></li>
+            <li><a class="sidebar-link" href="#workflows">Git Workflows</a></li>
+            <li><a class="sidebar-link" href="#best-practices">Best Practices</a></li>
+            <li><a class="sidebar-link" href="#troubleshooting">Troubleshooting</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Documentation Content -->
+      <div class="nine columns">
+        <!-- Introduction Section -->
+        <section id="intro" class="docs-section">
+          <h6 class="docs-header">Introduction to Git</h6>
+          <p class="section-description">
+            Git is a distributed version control system designed to handle everything from small to very large projects with speed and efficiency. It was created by Linus Torvalds in 2005 for the development of the Linux kernel.
+          </p>
+          
+          <div class="row">
+            <div class="six columns">
+              <h5>Key Features</h5>
+              <ul>
+                <li><strong>Distributed:</strong> Every developer has a full copy of the repository</li>
+                <li><strong>Speed:</strong> Most operations are performed locally</li>
+                <li><strong>Data Integrity:</strong> Git ensures the cryptographic integrity of every bit of your project</li>
+                <li><strong>Branching:</strong> Lightweight branching and merging</li>
+                <li><strong>Staging Area:</strong> Intermediate area for crafting commits</li>
+              </ul>
+            </div>
+            <div class="six columns">
+              <div class="callout callout-info">
+                <h5>Why Use Git?</h5>
+                <p>Git allows teams to work collaboratively on code, track changes, revert to previous states, and maintain multiple versions simultaneously. It's the industry standard for version control.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Setup Section -->
+        <section id="setup" class="docs-section">
+          <h6 class="docs-header">Setup & Configuration</h6>
+          <p class="section-description">
+            Before you can start using Git, you need to set it up on your system and configure your identity.
+          </p>
+
+          <div class="command-description">
+            <h5>Installation</h5>
+            <p>Install Git on your system using the appropriate method for your operating system:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <p><strong>Linux (Debian/Ubuntu):</strong></p>
+            <pre><code>$ sudo apt-get update
+$ sudo apt-get install git</code></pre>
+
+            <p><strong>macOS (using Homebrew):</strong></p>
+            <pre><code>$ brew install git</code></pre>
+
+            <p><strong>Windows:</strong></p>
+            <p>Download and install from <a href="https://git-scm.com/download/win" target="_blank">https://git-scm.com/download/win</a></p>
+          </div>
+
+          <div class="command-description">
+            <h5>Initial Configuration</h5>
+            <p>Set your username and email address which will be associated with your commits:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git config --global user.name "Your Name"
+$ git config --global user.email "your.email@example.com"</code></pre>
+          </div>
+
+          <div class="command-description">
+            <h5>Configuration Options</h5>
+            <p>Configure your default editor, diff tool, and other preferences:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git config --global core.editor "code --wait"  # Set VS Code as default editor
+$ git config --global init.defaultBranch main    # Set default branch name to main
+$ git config --global color.ui auto              # Enable colorized output</code></pre>
+          </div>
+
+          <div class="callout callout-info">
+            <h5>Configuration Levels</h5>
+            <p>Git configuration can be set at three levels:</p>
+            <ul>
+              <li><code>--system</code>: Applies to all users on the system</li>
+              <li><code>--global</code>: Applies to all repositories for the current user</li>
+              <li><code>--local</code>: Applies only to the current repository (default)</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Basic Commands Section -->
+        <section id="basics" class="docs-section">
+          <h6 class="docs-header">Basic Commands</h6>
+          <p class="section-description">
+            These essential Git commands will help you get started with version control for your projects.
+          </p>
+
+          <div class="command-description">
+            <h5>Creating a Repository</h5>
+            <p>Initialize a new Git repository in your project directory:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ mkdir my-project
+$ cd my-project
+$ git init</code></pre>
+          </div>
+
+          <div class="command-description">
+            <h5>Checking Status</h5>
+            <p>View the status of your working directory and staging area:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git status</code></pre>
+          </div>
+
+          <div class="command-description">
+            <h5>Adding Files</h5>
+            <p>Add files to the staging area to prepare them for a commit:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git add filename.txt           # Add a specific file
+$ git add directory/             # Add all files in a directory
+$ git add .                      # Add all files in the current directory
+$ git add -p                     # Interactively add parts of files</code></pre>
+          </div>
+
+          <div class="command-description">
+            <h5>Committing Changes</h5>
+            <p>Record the changes in the repository with a descriptive message:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git commit -m "Add initial project files"
+$ git commit -a -m "Update documentation"  # Automatically stage modified files</code></pre>
+          </div>
+
+          <div class="command-description">
+            <h5>Viewing History</h5>
+            <p>Examine the commit history of your repository:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git log                        # View commit history
+$ git log --oneline              # Compact view
+$ git log --graph --oneline      # Graphical representation
+$ git log -p                     # Show patches (changes) for each commit
+$ git log --stat                 # Show statistics for each commit</code></pre>
+          </div>
+
+          <div class="command-description">
+            <h5>Viewing Changes</h5>
+            <p>See what has changed in your working directory:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git diff                       # Changes between working directory and staging area
+$ git diff --staged              # Changes between staging area and last commit
+$ git diff HEAD                  # All changes since last commit
+$ git diff commit1 commit2       # Changes between two commits</code></pre>
+          </div>
+
+          <div class="callout callout-warning">
+            <h5>Commit Best Practices</h5>
+            <p>Write clear, concise commit messages that explain <em>why</em> a change was made, not just what was changed. Keep commits focused on a single logical change to make history more useful.</p>
+          </div>
+        </section>
+
+        <!-- Branching Section -->
+        <section id="branching" class="docs-section">
+          <h6 class="docs-header">Branching & Merging</h6>
+          <p class="section-description">
+            Branching is one of Git's most powerful features, allowing you to work on multiple features or fixes simultaneously without affecting the main codebase.
+          </p>
+
+          <div class="command-description">
+            <h5>Working with Branches</h5>
+            <p>Create, list, and switch between branches:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git branch                     # List all local branches
+$ git branch -a                  # List all branches (local and remote)
+$ git branch feature-name        # Create a new branch
+$ git checkout feature-name      # Switch to a branch
+$ git checkout -b feature-name   # Create and switch to a new branch
+$ git switch feature-name        # Switch to a branch (Git 2.23+)
+$ git switch -c feature-name     # Create and switch to a new branch (Git 2.23+)</code></pre>
+          </div>
+
+          <div class="command-description">
+            <h5>Merging Branches</h5>
+            <p>Combine changes from one branch into another:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git checkout main             # Switch to the target branch
+$ git merge feature-name         # Merge changes from feature-name into main
+$ git merge --no-ff feature-name # Create a merge commit even if fast-forward is possible</code></pre>
+          </div>
+
+          <div class="command-description">
+            <h5>Handling Merge Conflicts</h5>
+            <p>Resolve conflicts that occur during a merge:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git merge feature-branch
+# If conflicts occur:
+# 1. Edit the conflicted files to resolve the conflicts
+# 2. Mark them as resolved
+$ git add conflicted-file.txt
+# 3. Complete the merge
+$ git commit</code></pre>
+          </div>
+
+          <div class="command-description">
+            <h5>Rebasing</h5>
+            <p>Reapply commits on top of another base branch:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git checkout feature-branch
+$ git rebase main               # Rebase feature-branch onto main
+$ git rebase -i HEAD~3          # Interactive rebase for the last 3 commits</code></pre>
+          </div>
+
+          <div class="callout callout-danger">
+            <h5>Rebase Warning</h5>
+            <p>Never rebase commits that have been pushed to a public repository and others might have based work on. Rebasing rewrites history and can cause problems for collaborators.</p>
+          </div>
+
+          <div class="command-description">
+            <h5>Branch Management</h5>
+            <p>Delete branches and view branch information:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git branch -d feature-name     # Delete a branch (if merged)
+$ git branch -D feature-name     # Force delete a branch (even if not merged)
+$ git branch -m new-name         # Rename current branch
+$ git branch --merged            # List merged branches
+$ git branch --no-merged         # List unmerged branches</code></pre>
+          </div>
+        </section>
+
+        <!-- Remote Repositories Section -->
+        <section id="remote" class="docs-section">
+          <h6 class="docs-header">Remote Repositories</h6>
+          <p class="section-description">
+            Remote repositories allow you to collaborate with others and back up your work on external servers.
+          </p>
+
+          <div class="command-description">
+            <h5>Working with Remotes</h5>
+            <p>Add, view, and remove remote repositories:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git remote                     # List remote repositories
+$ git remote -v                  # List remote repositories with URLs
+$ git remote add origin https://github.com/username/repo.git
+$ git remote remove origin       # Remove a remote
+$ git remote rename origin upstream  # Rename a remote</code></pre>
+          </div>
+
+          <div class="command-description">
+            <h5>Cloning Repositories</h5>
+            <p>Create a local copy of a remote repository:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git clone https://github.com/username/repo.git
+$ git clone https://github.com/username/repo.git my-folder  # Clone to specific folder
+$ git clone --depth 1 https://github.com/username/repo.git  # Shallow clone (only latest commit)</code></pre>
+          </div>
+
+          <div class="command-description">
+            <h5>Fetching & Pulling</h5>
+            <p>Get updates from remote repositories:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git fetch origin              # Download objects and refs from origin
+$ git fetch --all               # Fetch from all remotes
+$ git pull origin main          # Fetch and merge changes from origin/main
+$ git pull --rebase origin main # Fetch and rebase changes from origin/main</code></pre>
+          </div>
+
+          <div class="command-description">
+            <h5>Pushing Changes</h5>
+            <p>Upload local changes to a remote repository:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git push origin main          # Push local main branch to origin
+$ git push -u origin feature    # Push and set upstream for feature branch
+$ git push --force origin main  # Force push (use with caution!)
+$ git push --tags               # Push tags to remote</code></pre>
+          </div>
+
+          <div class="callout callout-warning">
+            <h5>Force Push Warning</h5>
+            <p>Using <code>--force</code> overwrites the remote branch with your local branch, potentially erasing other people's commits. Use it with extreme caution, preferably only on your personal branches.</p>
+          </div>
+
+          <div class="command-description">
+            <h5>Working with Remote Branches</h5>
+            <p>Track and manage remote branches:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code>$ git checkout --track origin/feature  # Create local branch tracking remote branch
+$ git branch -u origin/feature        # Set upstream for current branch
+$ git push origin --delete feature    # Delete remote branch</code></pre>
+          </div>
+        </section>
+
+        <!-- Workflows Section -->
+        <section id="workflows" class="docs-section">
+          <h6 class="docs-header">Git Workflows</h6>
+          <p class="section-description">
+            Established Git workflows help teams collaborate effectively. Here are some common patterns for organizing your Git workflow.
+          </p>
+
+          <div class="row">
+            <div class="six columns">
+              <h5>Centralized Workflow</h5>
+              <p>Similar to SVN, with a single main branch where all changes are committed.</p>
+              <ul>
+                <li>Simple to understand and implement</li>
+                <li>Works well for small teams and projects</li>
+                <li>Limited parallel development</li>
+              </ul>
+              <div class="docs-example">
+                <pre><code>$ git clone https://github.com/company/project.git
+$ git pull origin main
+# Make changes
+$ git commit -a -m "Fix bug in login form"
+$ git pull --rebase origin main
+$ git push origin main</code></pre>
+              </div>
+            </div>
+            <div class="six columns">
+              <h5>Feature Branch Workflow</h5>
+              <p>All feature development takes place in dedicated branches instead of the main branch.</p>
+              <ul>
+                <li>Enables parallel development</li>
+                <li>Keeps the main branch clean</li>
+                <li>Facilitates code reviews via pull requests</li>
+              </ul>
+              <div class="docs-example">
+                <pre><code>$ git checkout -b feature-login
+# Make changes
+$ git commit -a -m "Implement login feature"
+$ git push -u origin feature-login
+# Create pull request
+# After review and approval:
+$ git checkout main
+$ git pull
+$ git merge feature-login
+$ git push origin main</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="six columns">
+              <h5>Gitflow Workflow</h5>
+              <p>A robust framework for managing larger projects with a strict branching model.</p>
+              <ul>
+                <li>Separate branches for features, releases, and hotfixes</li>
+                <li>Well-defined branch structure and merge strategy</li>
+                <li>Ideal for projects with scheduled releases</li>
+              </ul>
+              <div class="docs-example">
+                <pre><code># Start a new feature
+$ git checkout -b feature/user-auth develop
+# Finish feature
+$ git checkout develop
+$ git merge feature/user-auth
+# Start a release
+$ git checkout -b release/1.0.0 develop
+# Finish release
+$ git checkout main
+$ git merge release/1.0.0
+$ git tag -a v1.0.0
+$ git checkout develop
+$ git merge release/1.0.0</code></pre>
+              </div>
+            </div>
+            <div class="six columns">
+              <h5>Forking Workflow</h5>
+              <p>Each developer has their own server-side repository, commonly used in open source projects.</p>
+              <ul>
+                <li>Complete isolation between developers</li>
+                <li>Maintainers control what code is accepted</li>
+                <li>No need for direct access to the official repository</li>
+              </ul>
+              <div class="docs-example">
+                <pre><code># Fork the repository on GitHub/GitLab
+$ git clone https://github.com/username/forked-project.git
+$ git remote add upstream https://github.com/original/project.git
+# Create a feature branch
+$ git checkout -b feature-name
+# Make changes and commit
+$ git push origin feature-name
+# Create pull request from your fork to the original repo</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout callout-info">
+            <h5>Choosing a Workflow</h5>
+            <p>The best workflow depends on your team size, project complexity, and release schedule. Start simple and adapt as needed. Many teams use a hybrid approach combining elements from different workflows.</p>
+          </div>
+        </section>
+
+        <!-- Best Practices Section -->
+        <section id="best-practices" class="docs-section">
+          <h6 class="docs-header">Best Practices</h6>
+          <p class="section-description">
+            Follow these best practices to maintain a clean and efficient Git workflow.
+          </p>
+
+          <div class="row">
+            <div class="six columns">
+              <h5>Commit Practices</h5>
+              <ul>
+                <li><strong>Atomic commits:</strong> Each commit should represent a single logical change</li>
+                <li><strong>Descriptive messages:</strong> Write clear commit messages with a subject line and detailed body if needed</li>
+                <li><strong>Conventional format:</strong> Consider using conventional commits (feat:, fix:, docs:, etc.)</li>
+                <li><strong>No commented code:</strong> Remove commented-out code before committing</li>
+                <li><strong>Verify before commit:</strong> Use <code>git diff --staged</code> to review changes</li>
+              </ul>
+            </div>
+            <div class="six columns">
+              <h5>Branching Practices</h5>
+              <ul>
+                <li><strong>Branch naming:</strong> Use descriptive prefixes (feature/, bugfix/, hotfix/)</li>
+                <li><strong>Short-lived branches:</strong> Merge feature branches promptly</li>
+                <li><strong>Regular rebasing:</strong> Keep feature branches up-to-date with main</li>
+                <li><strong>Clean up:</strong> Delete branches after merging</li>
+                <li><strong>No direct commits to main:</strong> Always use feature branches and pull requests</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="command-description">
+            <h5>Using .gitignore</h5>
+            <p>Exclude files and directories from version control:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code># Example .gitignore file
+# Dependency directories
+node_modules/
+vendor/
+
+# Build outputs
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace</code></pre>
+          </div>
+
+          <div class="command-description">
+            <h5>Git Hooks</h5>
+            <p>Automate tasks with Git hooks:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code># Example pre-commit hook to run linting
+#!/bin/sh
+npm run lint
+
+# Exit with non-zero status if linting fails
+if [ $? -ne 0 ]; then
+  echo "Linting failed! Commit aborted."
+  exit 1
+fi</code></pre>
+          </div>
+
+          <div class="callout callout-success">
+            <h5>Code Review Tips</h5>
+            <p>When reviewing pull requests:</p>
+            <ul>
+              <li>Focus on the code, not the person</li>
+              <li>Check for potential bugs and edge cases</li>
+              <li>Verify test coverage</li>
+              <li>Look for maintainability and readability issues</li>
+              <li>Ensure adherence to project standards</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Troubleshooting Section -->
+        <section id="troubleshooting" class="docs-section">
+          <h6 class="docs-header">Troubleshooting</h6>
+          <p class="section-description">
+            Solutions to common Git problems you might encounter.
+          </p>
+
+          <div class="command-description">
+            <h5>Undoing Changes</h5>
+            <p>Revert changes at different stages:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code># Discard changes in working directory
+$ git checkout -- filename.txt
+
+# Unstage a file
+$ git restore --staged filename.txt  # Git 2.23+
+$ git reset HEAD filename.txt        # Older Git versions
+
+# Amend the last commit
+$ git commit --amend -m "New commit message"
+
+# Revert a commit (creates a new commit that undoes changes)
+$ git revert commit-hash
+
+# Reset to a previous commit (use with caution!)
+$ git reset --soft HEAD~1   # Undo last commit, keep changes staged
+$ git reset HEAD~1          # Undo last commit, keep changes unstaged
+$ git reset --hard HEAD~1   # Undo last commit, discard changes</code></pre>
+          </div>
+
+          <div class="command-description">
+            <h5>Recovering Lost Work</h5>
+            <p>Recover commits that are no longer referenced:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code># Find lost commits
+$ git reflog
+
+# Recover a commit
+$ git checkout commit-hash
+
+# Create a branch at that commit
+$ git checkout -b recovery-branch commit-hash</code></pre>
+          </div>
+
+          <div class="command-description">
+            <h5>Stashing Changes</h5>
+            <p>Temporarily store changes to work on something else:</p>
+          </div>
+
+          <div class="docs-example command-example">
+            <pre><code># Stash changes
+$ git stash
+
+# List stashes
+$ git stash list
+
+# Apply most recent stash
+$ git stash apply
+
+# Apply specific stash
+$ git stash apply stash@{2}
+
+# Apply and remove stash
+$ git stash pop
+
+# Create a branch from a stash
+$ git stash branch new-branch stash@{0}
+
+# Remove a stash
+$ git stash drop stash@{0}
+
+# Clear all stashes
+$ git stash clear</code></pre>
+          </div>
+
+          <div class="callout callout-warning">
+            <h5>Common Errors</h5>
+            <table>
+              <thead>
+                <tr>
+                  <th>Error</th>
+                  <th>Solution</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Merge conflicts</td>
+                  <td>Resolve conflicts in affected files, then <code>git add</code> and <code>git commit</code></td>
+                </tr>
+                <tr>
+                  <td>Detached HEAD state</td>
+                  <td>Create a branch with <code>git checkout -b new-branch</code> or return to a branch</td>
+                </tr>
+                <tr>
+                  <td>Rejected push</td>
+                  <td>Pull changes first with <code>git pull</code>, resolve conflicts, then push</td>
+                </tr>
+                <tr>
+                  <td>Untracked files</td>
+                  <td>Add to <code>.gitignore</code> or stage with <code>git add</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="container">
+      <p>Git Documentation | Created with <a href="http://getskeleton.com/" target="_blank">Skeleton CSS</a></p>
+      <p>© 2025 - A comprehensive guide for Git version control</p>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Simple script to highlight the active section in the sidebar
+    document.addEventListener('DOMContentLoaded', function() {
+      const sections = document.querySelectorAll('.docs-section');
+      const navLinks = document.querySelectorAll('.navbar-link');
+      const sidebarLinks = document.querySelectorAll('.sidebar-link');
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      const navbarList = document.getElementById('navbar-list');
+      
+      // Mobile menu toggle
+      mobileMenuToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navbarList.classList.toggle('active');
+      });
+      
+      // Close mobile menu when a link is clicked
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mobileMenuToggle.classList.remove('active');
+          navbarList.classList.remove('active');
+        });
+      });
+      
+      // Highlight active section on scroll
+      window.addEventListener('scroll', function() {
+        let current = '';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if(pageYOffset >= (sectionTop - 200)) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if(link.getAttribute('href').substring(1) === current) {
+            link.classList.add('active');
+          }
+        });
+        
+        sidebarLinks.forEach(link => {
+          link.classList.remove('active');
+          if(link.getAttribute('href').substring(1) === current) {
+            link.classList.add('active');
+          }
+        });
+      });
+      
+      // Smooth scrolling for anchor links with offset for fixed header
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          const navbarHeight = document.querySelector('.navbar').offsetHeight;
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
